@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Forefront.CardGame.Game", "Forefront.CardGame.Game\Forefront.CardGame.Game.csproj", "{0549FA0E-608F-487A-A44F-B8C04AAA5262}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Forefront.CardGame.Tests", "Forefront.CardGame.Tests\Forefront.CardGame.Tests.csproj", "{A12327F7-4817-4BC8-BA08-E962769D2948}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Forefront.CardGame.App", "Forefront.CardGame.App\Forefront.CardGame.App.csproj", "{D068218B-B084-44A0-A70C-F658EAD7EDE3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0549FA0E-608F-487A-A44F-B8C04AAA5262}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0549FA0E-608F-487A-A44F-B8C04AAA5262}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0549FA0E-608F-487A-A44F-B8C04AAA5262}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0549FA0E-608F-487A-A44F-B8C04AAA5262}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A12327F7-4817-4BC8-BA08-E962769D2948}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A12327F7-4817-4BC8-BA08-E962769D2948}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A12327F7-4817-4BC8-BA08-E962769D2948}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A12327F7-4817-4BC8-BA08-E962769D2948}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D068218B-B084-44A0-A70C-F658EAD7EDE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D068218B-B084-44A0-A70C-F658EAD7EDE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D068218B-B084-44A0-A70C-F658EAD7EDE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D068218B-B084-44A0-A70C-F658EAD7EDE3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
