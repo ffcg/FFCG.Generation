@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FFCG.Bingo.Tests;
 
 namespace FFCG.Bingo.Application
 {
@@ -14,7 +10,7 @@ namespace FFCG.Bingo.Application
             var rows = 15;
             var card = new Card(rows);
 
-            var numbers = Randomizer.Randomise(1, rows*5);
+            var numbers = Randomizer.Randomize(1, rows*5);
             var stack = new Stack<int>(numbers);
             int currentNumber = 0;
             while (true)

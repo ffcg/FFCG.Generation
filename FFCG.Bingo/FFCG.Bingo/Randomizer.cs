@@ -5,7 +5,7 @@ namespace FFCG.Bingo
 {
     public static class Randomizer
     {
-        public static int[] Randomise(int start, int end)
+        public static int[] Randomize(int start, int end)
         {
             var ints = new int[end - start + 1];
             int index = 0;

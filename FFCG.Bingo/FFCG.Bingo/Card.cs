@@ -17,7 +17,7 @@ namespace FFCG.Bingo
             int currentStart = 1;
             for (int col = 0; col < 5; col++)
             {
-                var randomise = Randomizer.Randomise(currentStart, currentStart + rows - 1);
+                var randomise = Randomizer.Randomize(currentStart, currentStart + rows - 1);
 
                 for (int row = 0; row < rows; row++)
                     _card[row, col] = new Square(randomise[row]);
@@ -35,14 +35,14 @@ namespace FFCG.Bingo
         {
             var rows = new List<Row>();
 
-            for (int row = 0; row < _rows; row++)
+            for (int rowIndex = 0; rowIndex < _rows; rowIndex++)
             {
-                var row1 = new Row();
+                var row = new Row();
                 for (int col = 0; col < 5; col++)
                 {
-                    row1.AddSquare(_card[row, col]);
+                    row.AddSquare(_card[rowIndex, col]);
                 }
-                rows.Add(row1);
+                rows.Add(row);
             }
 
             return rows;
