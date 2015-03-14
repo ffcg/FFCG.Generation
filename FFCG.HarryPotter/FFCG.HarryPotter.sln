@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFCG.HarryPotter.Tests", "FFCG.HarryPotter.Tests\FFCG.HarryPotter.Tests.csproj", "{64451C96-435A-44BA-B8CE-E7C63CBFE760}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFCG.HarryPotter.Domain", "FFCG.HarryPotter.Domain\FFCG.HarryPotter.Domain.csproj", "{78113003-8ED6-47C0-9BC3-EAD9F5391EF9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{64451C96-435A-44BA-B8CE-E7C63CBFE760}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64451C96-435A-44BA-B8CE-E7C63CBFE760}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64451C96-435A-44BA-B8CE-E7C63CBFE760}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64451C96-435A-44BA-B8CE-E7C63CBFE760}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78113003-8ED6-47C0-9BC3-EAD9F5391EF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78113003-8ED6-47C0-9BC3-EAD9F5391EF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78113003-8ED6-47C0-9BC3-EAD9F5391EF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78113003-8ED6-47C0-9BC3-EAD9F5391EF9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
