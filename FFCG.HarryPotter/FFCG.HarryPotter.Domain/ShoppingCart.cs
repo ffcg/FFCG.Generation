@@ -28,9 +28,7 @@ namespace FFCG.HarryPotter.Domain
 
             for (var i = 0; MaxNumberOfBooksOfOneKind > i; i++)
             {
-                var books = (from item in _items 
-                    where i < item.Count 
-                    select item[i]).ToList();
+                var books = GetCurrentSerieOfBooks(i);
 
                 var totalPriceForCurrentSerie = books.Sum(x => x.Price);
 
@@ -56,6 +54,13 @@ namespace FFCG.HarryPotter.Domain
             return total;
         }
 
+        private List<Book> GetCurrentSerieOfBooks(int i)
+        {
+            return (from item in _items 
+                where i < item.Count 
+                select item[i]).ToList();
+        }
+
         public ShoppingCart()
         {
             _items = new List<List<Book>>();
@@ -63,9 +68,9 @@ namespace FFCG.HarryPotter.Domain
 
         public void Add(Book book)
         {
-            if (Items.Any(x => x.Id == book.Id))
+            if (BookIsAdded(book))
             {
-                foreach (var item in _items.Where(item => item.Any(x => x.Id == book.Id)))
+                foreach (var item in FindCollectionForThisKindOfBook(book))
                     item.Add(book);
             }
             else
@@ -73,6 +78,16 @@ namespace FFCG.HarryPotter.Domain
                 var books = new List<Book> { book };
                 _items.Add(books);
             }
+        }
+
+        private IEnumerable<List<Book>> FindCollectionForThisKindOfBook(Book book)
+        {
+            return _items.Where(item => item.Any(x => x.Id == book.Id));
+        }
+
+        private bool BookIsAdded(Book book)
+        {
+            return Items.Any(x => x.Id == book.Id);
         }
     }
 }
