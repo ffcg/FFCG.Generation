@@ -1,5 +1,8 @@
+using System.Collections.Generic;
 using FFCG.HarryPotter.Domain;
+using FFCG.HarryPotter.Domain.Discounts;
 using FluentAssertions;
+using Moq;
 using NUnit.Framework;
 
 namespace FFCG.HarryPotter.Tests
@@ -8,11 +11,15 @@ namespace FFCG.HarryPotter.Tests
     public class ShoppingCartTests
     {
         private ShoppingCart _shoppingCart;
+        private Mock<ICalculateDiscountForBooks> _mock;
 
         [SetUp]
         public void SetUp()
         {
-            _shoppingCart = new ShoppingCart();
+            _mock = new Mock<ICalculateDiscountForBooks>();
+
+
+            _shoppingCart = new ShoppingCart(new List<ICalculateDiscountForBooks> {_mock.Object});
         }
 
         [Test]
@@ -40,69 +47,19 @@ namespace FFCG.HarryPotter.Tests
         [Test]
         public void Total_price_should_be_correct_if_cart_contains_one_book()
         {
+            _mock.Setup(x => x.Calculate(It.IsAny<List<Book>>())).Returns(0);
+
             _shoppingCart.Add(new Book("id", "name", 100));
             _shoppingCart.CalculateTotalPrice().Should().Be(100);
         }
 
         [Test]
-        public void Total_price_should_be_correct_if_cart_contains_two_unique_books()
+        public void Total_price_should_be_correct_if_cart_use_any_discount_rules()
         {
-            _shoppingCart.Add(new Book("id1", "name", 100));
-            _shoppingCart.Add(new Book("id2", "name", 100));
-            _shoppingCart.CalculateTotalPrice().Should().Be(190);
-        }
+            _mock.Setup(x => x.Calculate(It.IsAny<List<Book>>())).Returns(10);
 
-        [Test]
-        public void Total_price_should_be_correct_if_cart_contains_three_unique_books()
-        {
-            _shoppingCart.Add(new Book("id1", "name", 100));
-            _shoppingCart.Add(new Book("id2", "name", 100));
-            _shoppingCart.Add(new Book("id3", "name", 100));
-            _shoppingCart.CalculateTotalPrice().Should().Be(270);
-        }
-
-        [Test]
-        public void Total_price_should_be_correct_if_cart_contains_four_unique_books()
-        {
-            _shoppingCart.Add(new Book("id1", "name", 100));
-            _shoppingCart.Add(new Book("id2", "name", 100));
-            _shoppingCart.Add(new Book("id3", "name", 100));
-            _shoppingCart.Add(new Book("id4", "name", 100));
-            _shoppingCart.CalculateTotalPrice().Should().Be(320);
-        }
-
-        [Test]
-        public void Total_price_should_be_correct_if_cart_contains_five_unique_books()
-        {
-            _shoppingCart.Add(new Book("id1", "name", 100));
-            _shoppingCart.Add(new Book("id2", "name", 100));
-            _shoppingCart.Add(new Book("id3", "name", 100));
-            _shoppingCart.Add(new Book("id4", "name", 100));
-            _shoppingCart.Add(new Book("id5", "name", 100));
-            _shoppingCart.CalculateTotalPrice().Should().Be(375);
-        }
-
-        [Test]
-        public void Should_be_able_to_calculate_price()
-        {
-            _shoppingCart.Add(new Book("id1", "name", 100));
-            _shoppingCart.Add(new Book("id1", "name", 100));
-            _shoppingCart.CalculateTotalPrice().Should().Be(200);
-        }
-
-        [Test]
-        public void Should_be_able_to_calculate_price_with_many_books()
-        {
-            _shoppingCart.Add(new Book("id1", "name", 8));
-            _shoppingCart.Add(new Book("id1", "name", 8));
-            _shoppingCart.Add(new Book("id2", "name", 8));
-            _shoppingCart.Add(new Book("id2", "name", 8));
-            _shoppingCart.Add(new Book("id3", "name", 8));
-            _shoppingCart.Add(new Book("id3", "name", 8));
-            _shoppingCart.Add(new Book("id4", "name", 8));
-            _shoppingCart.Add(new Book("id5", "name", 8));
-
-            _shoppingCart.CalculateTotalPrice().Should().Be(51.6m);
+            _shoppingCart.Add(new Book("id", "name", 100));
+            _shoppingCart.CalculateTotalPrice().Should().Be(90);
         }
     }
 }

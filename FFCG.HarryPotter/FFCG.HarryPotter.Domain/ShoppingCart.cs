@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
+using FFCG.HarryPotter.Domain.Discounts;
 
 namespace FFCG.HarryPotter.Domain
 {
     public class ShoppingCart
     {
+        private readonly List<ICalculateDiscountForBooks> _discountRules;
         private readonly List<List<Book>> _items;
 
         public IReadOnlyCollection<Book> Items
@@ -32,23 +34,12 @@ namespace FFCG.HarryPotter.Domain
 
                 var totalPriceForCurrentSerie = books.Sum(x => x.Price);
 
-                switch (books.Count)
+                foreach (var rule in _discountRules)
                 {
-                    case 2:
-                        totalPriceForCurrentSerie = totalPriceForCurrentSerie - (totalPriceForCurrentSerie * 0.05m);
-                        break;
-                    case 3:
-                        totalPriceForCurrentSerie = totalPriceForCurrentSerie - (totalPriceForCurrentSerie * 0.1m);
-                        break;
-                    case 4:
-                        totalPriceForCurrentSerie = totalPriceForCurrentSerie - (totalPriceForCurrentSerie * 0.2m);
-                        break;
-                    case 5:
-                        totalPriceForCurrentSerie = totalPriceForCurrentSerie - (totalPriceForCurrentSerie * 0.25m);
-                        break;
+                    totalPriceForCurrentSerie = totalPriceForCurrentSerie - rule.Calculate(books);
                 }
 
-                total = total + totalPriceForCurrentSerie;
+                total += totalPriceForCurrentSerie;
             }
 
             return total;
@@ -61,8 +52,10 @@ namespace FFCG.HarryPotter.Domain
                 select item[i]).ToList();
         }
 
-        public ShoppingCart()
+        public ShoppingCart(List<ICalculateDiscountForBooks> discountRules)
         {
+            _discountRules = discountRules;
+
             _items = new List<List<Book>>();
         }
 
