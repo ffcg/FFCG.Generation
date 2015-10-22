@@ -6,19 +6,7 @@ namespace FFCG.G4.WordReverser
     {
         public string ReverseSentence(string sentence)
         {
-            var reversedSentence = string.Empty;
-
-            foreach (var word in WordsInSentence(sentence))
-            {
-                foreach (var letter in word.Reverse())
-                {
-                    reversedSentence += letter.ToString();
-                }
-
-                reversedSentence = AddSpaceAfterCurrentWord(reversedSentence);
-            }
-
-            return RemoveLastAddedSpace(reversedSentence);
+            return sentence;
         }
 
         private static string AddSpaceAfterCurrentWord(string reversedSentence)
