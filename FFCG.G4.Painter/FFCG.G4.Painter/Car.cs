@@ -6,13 +6,13 @@ namespace FFCG.G4.Painter
     {
         public string RegistrationNumber { get; set; }
         public Color Color { get; set; }
+        public CarType Type { get; set; }
 
-        public Car(string registrationNumber)
+        public Car(string registrationNumber, CarType type)
         {
             RegistrationNumber = registrationNumber;
+            Type = type;
             Color = Color.Gray;
-
-
         }
     }
 }
