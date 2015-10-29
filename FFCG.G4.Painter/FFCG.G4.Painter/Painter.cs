@@ -4,9 +4,9 @@ namespace FFCG.G4.Painter
 {
     public class Painter
     {
-        public void Paint(Car car, Color color)
+        public void Paint(Vehicle vehicle, Color color)
         {
-            car.Color = color;
+            vehicle.Color = color;
         }
     }
 }

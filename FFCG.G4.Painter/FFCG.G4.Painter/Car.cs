@@ -1,18 +1,12 @@
-using System.Drawing;
-
 namespace FFCG.G4.Painter
 {
-    public class Car
+    public class Car : Vehicle
     {
-        public string RegistrationNumber { get; set; }
-        public Color Color { get; set; }
         public CarType Type { get; set; }
 
-        public Car(string registrationNumber, CarType type)
+        public Car(string registrationNumber, CarType type) : base(registrationNumber)
         {
-            RegistrationNumber = registrationNumber;
             Type = type;
-            Color = Color.Gray;
         }
     }
 }
