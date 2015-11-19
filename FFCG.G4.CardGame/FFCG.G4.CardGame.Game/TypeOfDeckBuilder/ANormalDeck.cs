@@ -13,7 +13,7 @@ namespace FFCG.G4.CardGame.Game.TypeOfDeckBuilder
 
             foreach (var suit in allSuits)
             {
-                var counter = 2;
+                var counter = 1;
                 foreach (var cardName in allCardNames)
                 {
                     counter++;

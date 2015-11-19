@@ -2,9 +2,9 @@ namespace FFCG.G4.CardGame.Game
 {
     public class Card
     {
-        public Suit Suit { get; set; }
-        public CardNames Name { get; set; }
-        public int Value { get; set; }
+        public Suit Suit { get; private set; }
+        public CardNames Name { get; private set; }
+        public int Value { get; private set; }
 
         public Card(Suit suit, CardNames name, int value)
         {

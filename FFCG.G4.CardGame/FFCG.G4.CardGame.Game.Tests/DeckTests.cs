@@ -42,7 +42,7 @@ namespace FFCG.G4.CardGame.Game.Tests
             _deck.Shuffle();
             var hand = _deck.TakeOneHand();
             var showCard = hand.Cards();
-            showCard.First().Value.Should().Be(15);
+            showCard.First().Value.Should().Be(14);
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace FFCG.G4.CardGame.Game.Tests
 
         public class TestShuffler : IShuffelCards
         {
-            public List<Card> Shuffle(Stack<Card> cards)
+            public List<Card> Shuffle(IEnumerable<Card> cards)
             {
                 return cards.OrderBy(x => x.Value).ThenBy(x => x.Suit).ToList();
             }

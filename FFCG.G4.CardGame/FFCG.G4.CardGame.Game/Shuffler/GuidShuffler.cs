@@ -6,7 +6,7 @@ namespace FFCG.G4.CardGame.Game.Shuffler
 {
     public class GuidShuffler : IShuffelCards
     {
-        public List<Card> Shuffle(Stack<Card> cards)
+        public List<Card> Shuffle(IEnumerable<Card> cards)
         {
             return cards.OrderBy(x => Guid.NewGuid()).ToList();
         }
