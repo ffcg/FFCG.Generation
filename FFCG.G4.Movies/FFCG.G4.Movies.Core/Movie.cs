@@ -10,5 +10,10 @@
             Id = id;
             Name = name;
         }
+
+        public override bool Equals(object o)
+        {
+            return o is Movie && ((Movie)o).Id == Id;
+        }
     }
 }

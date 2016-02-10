@@ -12,7 +12,7 @@ namespace FFCG.G4.Movies.Core.Tests
         [SetUp]
         public void SetUp()
         {
-            _collection = new MovieCollection();
+            _collection = new MovieCollection(new FakeStorage());
         }
 
         [Test]

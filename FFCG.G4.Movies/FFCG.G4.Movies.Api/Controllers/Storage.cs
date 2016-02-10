@@ -4,7 +4,7 @@ namespace FFCG.G4.Movies.Api.Controllers
 {
     public static class Storage
     {
-        public static MovieCollection Collection = new MovieCollection();
+        public static MovieCollection Collection = new MovieCollection(new JsonStorage());
 
         static Storage()
         {
