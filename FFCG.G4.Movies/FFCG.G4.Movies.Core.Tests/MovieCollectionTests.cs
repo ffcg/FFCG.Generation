@@ -90,5 +90,22 @@ namespace FFCG.G4.Movies.Core.Tests
         {
             return _entities[typeof (T)].Values.Select(value => (T)value);
         }
+
+        public void Delete(object obj)
+        {
+            //Todo: remove duplication
+            var type = obj.GetType();
+            var json = JsonConvert.SerializeObject(obj);
+            var id = JToken.Parse(json)["Id"];
+
+            if (_entities.ContainsKey(type))
+            {
+                if (_entities[type].ContainsKey(id))
+                {
+                    _entities[type].Remove(id);
+                }
+            }
+            
+        }
     }
 }
