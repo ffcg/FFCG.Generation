@@ -4,12 +4,12 @@ namespace FFCG.G4.Movies.Api.Controllers
 {
     public static class Storage
     {
-        public static MovieCollection Collection = new MovieCollection();
+        public static MovieCollection Collection = new MovieCollection(new FileStorage(@"c:\temp\Movies.API"));
 
         static Storage()
         {
-            Collection.AddMovie(new Movie(1, "I'm batman"));
-            Collection.AddMovie(new Movie(2, "Star Wars IV"));
+            //Collection.AddMovie(new Movie(1, "I'm batman"));
+            //Collection.AddMovie(new Movie(2, "Star Wars IV"));
         }
     }
 }
