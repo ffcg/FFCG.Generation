@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFCG.G4.Movies.Core.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFCG.G4.Movies.Api", "FFCG.G4.Movies.Api\FFCG.G4.Movies.Api.csproj", "{BC75FC71-B254-4508-B973-12796AEF429F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFCG.G4.Movies.Web", "FFCG.G4.Movies.Web\FFCG.G4.Movies.Web.csproj", "{8C904DE3-724C-4D1E-9CB4-BB53ECD5C211}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFCG.G4.Movies.Web.Tests", "FFCG.G4.Movies.Web.Tests\FFCG.G4.Movies.Web.Tests.csproj", "{C6841C27-5A0D-4965-BFAB-88CFBB18AD13}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{BC75FC71-B254-4508-B973-12796AEF429F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC75FC71-B254-4508-B973-12796AEF429F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC75FC71-B254-4508-B973-12796AEF429F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C904DE3-724C-4D1E-9CB4-BB53ECD5C211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C904DE3-724C-4D1E-9CB4-BB53ECD5C211}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C904DE3-724C-4D1E-9CB4-BB53ECD5C211}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C904DE3-724C-4D1E-9CB4-BB53ECD5C211}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6841C27-5A0D-4965-BFAB-88CFBB18AD13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6841C27-5A0D-4965-BFAB-88CFBB18AD13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6841C27-5A0D-4965-BFAB-88CFBB18AD13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6841C27-5A0D-4965-BFAB-88CFBB18AD13}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

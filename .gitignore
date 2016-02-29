@@ -90,6 +90,7 @@ csx
 AppPackages/
 
 # Others
+wallaby.js
 [Bb]in
 [Oo]bj
 sql
