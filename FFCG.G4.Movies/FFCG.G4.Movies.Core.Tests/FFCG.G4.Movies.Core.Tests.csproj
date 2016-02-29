@@ -56,8 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FakeStorage.cs" />
-    <Compile Include="JsonStorageTests.cs" />
+    <Compile Include="FileStorageTests.cs" />
     <Compile Include="MovieCollectionTests.cs" />
     <Compile Include="MovieTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

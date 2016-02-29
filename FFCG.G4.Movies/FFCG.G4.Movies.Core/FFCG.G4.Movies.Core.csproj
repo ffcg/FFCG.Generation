@@ -44,8 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileStorage.cs" />
     <Compile Include="IStorage.cs" />
-    <Compile Include="JsonStorage.cs" />
     <Compile Include="Movie.cs" />
     <Compile Include="MovieCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

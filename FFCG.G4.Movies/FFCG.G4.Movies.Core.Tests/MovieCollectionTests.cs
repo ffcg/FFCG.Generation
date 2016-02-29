@@ -1,5 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using FluentAssertions;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 
 namespace FFCG.G4.Movies.Core.Tests
@@ -12,7 +16,7 @@ namespace FFCG.G4.Movies.Core.Tests
         [SetUp]
         public void SetUp()
         {
-            _collection = new MovieCollection(new FakeStorage());
+            _collection = new MovieCollection(new InMemoryStorage());
         }
 
         [Test]
@@ -45,6 +49,63 @@ namespace FFCG.G4.Movies.Core.Tests
             var movieFromCollection = _collection.Movies.First();
 
             movieFromCollection.Should().Be(movie);
+        }
+    }
+
+    public class InMemoryStorage : IStorage
+    {
+        private readonly Dictionary<Type, Dictionary<object, object>> _entities;
+
+        public InMemoryStorage()
+        {
+            _entities = new Dictionary<Type, Dictionary<object, object>>();
+        } 
+
+        public T Load<T>(object id)
+        {
+            return (T)_entities[typeof(T)][id];
+        }
+
+        public void Store(object obj)
+        {
+            var type = obj.GetType();
+            var json = JsonConvert.SerializeObject(obj);
+            var id = JToken.Parse(json)["Id"];
+
+            if(!_entities.ContainsKey(type))
+                _entities.Add(type, new Dictionary<object, object>());
+
+            if (_entities[type].ContainsKey(id))
+            {
+                _entities[type][id] = obj;
+            }
+            else
+            {
+                _entities[type].Add(id, obj);
+            }
+            
+        }
+
+        public IEnumerable<T> All<T>()
+        {
+            return _entities[typeof (T)].Values.Select(value => (T)value);
+        }
+
+        public void Delete(object obj)
+        {
+            //Todo: remove duplication
+            var type = obj.GetType();
+            var json = JsonConvert.SerializeObject(obj);
+            var id = JToken.Parse(json)["Id"];
+
+            if (_entities.ContainsKey(type))
+            {
+                if (_entities[type].ContainsKey(id))
+                {
+                    _entities[type].Remove(id);
+                }
+            }
+            
         }
     }
 }

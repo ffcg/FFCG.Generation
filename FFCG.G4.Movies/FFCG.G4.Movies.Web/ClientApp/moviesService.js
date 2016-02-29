@@ -5,7 +5,7 @@ var clientApp;
         var MoviesService = (function () {
             function MoviesService(httpService) {
                 this.httpService = httpService;
-                this.baseUrl = 'http://localhost:54276/api/movies';
+                this.baseUrl = 'http://localhost/Movies.App/api/movies';
             }
             MoviesService.prototype.getMovies = function () {
                 return this.httpService.get(this.baseUrl);
