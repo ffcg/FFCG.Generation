@@ -1,9 +1,11 @@
-﻿/// <reference path="../../ffcg.g4.movies.web/clientapp/moviescontroller.ts" />
+﻿/// <reference path="references.ts"/>
+/// <reference path="../../ffcg.g4.movies.web/clientapp/moviescontroller.ts" />
 
 describe('Movies controller', () => {
     var moviesController,
         getMoviesButton,
-        moviesContainer;
+        moviesContainer,
+        serviceMovies;
 
     beforeEach(() => {
         setUpFakeViewComponents();
@@ -12,8 +14,8 @@ describe('Movies controller', () => {
             getMovies() {
                 return {
                     then(callback) {
-                        var movies = [{ id: 1, name: 'Star Wars' }, { id: 2, name: 'The Matrix' }];
-                        callback(JSON.stringify(movies));
+                        serviceMovies = [{ id: 1, name: 'The Matrix' }, { id: 2, name: 'Star Wars' }, { id: 3, name: 'Another movie' }];;
+                        callback(JSON.stringify(serviceMovies));
                     }
                 }
             }
@@ -27,10 +29,25 @@ describe('Movies controller', () => {
             getMoviesButton.click();
         });
 
-        it('should display movies', () => {
-            expect(moviesContainer.innerHTML)
-                .toBe('<ul><li id="movie-1">Star Wars</li><li id="movie-2">The Matrix</li></ul>');
+        it('should get movies', done => {
+            setTimeout(() => {
+                expect(moviesContainer.movies).toEqual(serviceMovies);
+                done();
+            }, 0);
         });
+
+        it('should display movies', () => {
+            serviceMovies.forEach(m => expect(moviesContainer.innerHTML.indexOf(m.title) !== -1));
+        });
+
+        it('should show movies sorted by title', () => {
+            expect(getPosition('Another movie')).toBeLessThan(getPosition('Star Wars'));
+            expect(getPosition('Star Wars')).toBeLessThan(getPosition('The Matrix'));
+        });
+
+        function getPosition(name) {
+            return moviesContainer.innerHTML.indexOf(name);
+        }
     });
 
     function setUpFakeViewComponents() {
@@ -47,4 +64,4 @@ describe('Movies controller', () => {
             return null;
         });
     }
-})
+});

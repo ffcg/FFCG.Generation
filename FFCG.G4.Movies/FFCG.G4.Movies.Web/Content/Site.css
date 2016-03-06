@@ -22,3 +22,14 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.movies-list {
+    list-style: none; 
+    padding-left: 0;
+}
+
+.logo {
+    float: left; 
+    margin-right: 15px; 
+    width: 90px;
+}

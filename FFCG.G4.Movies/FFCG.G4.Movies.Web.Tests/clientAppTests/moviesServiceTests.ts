@@ -1,4 +1,5 @@
-﻿/// <reference path="../../ffcg.g4.movies.web/clientapp/moviesservice.ts" />
+﻿/// <reference path="references.ts"/>
+/// <reference path="../../ffcg.g4.movies.web/clientapp/moviesservice.ts" />
 
 describe('Movies service', () => {
     var moviesService,
@@ -48,9 +49,3 @@ describe('Movies service', () => {
         return !isNaN(parseFloat(n)) && isFinite(n);
     }
 });
-
-var describe: any;
-var it: any;
-var expect: any;
-var beforeEach: any;
-var jasmine: any;

@@ -45,6 +45,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="clientAppTests\moviesServiceTests.ts" />
     <TypeScriptCompile Include="clientAppTests\moviesControllerTests.ts" />
+    <TypeScriptCompile Include="clientAppTests\references.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
