@@ -20,7 +20,6 @@ var clientApp;
             moviesController.prototype.onReceivedMovies = function (data) {
                 var moviesContainer = document.getElementById('moviesContainer');
                 if (moviesContainer) {
-                    var logoUrl = "http://ia.media-imdb.com/images/M/MV5BMTg1NDE1NjE0Nl5BMl5BanBnXkFtZTgwMTAzNjM2MzE@._V1_.jpg";
                     var moviesTemplate = '<ul class="movies-list">' +
                         JSON.parse(data)
                             .sort(compareByName)
