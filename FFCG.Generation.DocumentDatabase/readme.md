@@ -21,4 +21,6 @@ Packa upp zip-filen till valfri katalog och starta sedan powershell. Starta:
 
 Nu är servern startad. Öppna en webbläsare och gå till http://localhost:8080. Första gången finns det inga databaser och ni kommer bli omdedd att skapa en. Döp den till "Demo".
 
+Gå till Tasks och välj "Generate sample data".
+
 Nu kan ni köra ovanstående applikation!
