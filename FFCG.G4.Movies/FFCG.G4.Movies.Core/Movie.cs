@@ -4,6 +4,9 @@
     {
         public int Id { get; }
         public string Name { get; }
+        public string Overview { get; set; }
+        public decimal Popularity { get; set; }
+        public string PosterPath { get; set; }
 
         public Movie(int id, string name)
         {

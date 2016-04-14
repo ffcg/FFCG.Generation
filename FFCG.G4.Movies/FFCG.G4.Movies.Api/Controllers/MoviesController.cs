@@ -9,7 +9,7 @@ namespace FFCG.G4.Movies.Api.Controllers
     {
         public IEnumerable<Movie> Get()
         {
-            return Storage.Collection.Movies;
+            return Storage.Collection.Movies.OrderByDescending(x => x.Popularity);
         }
 
         public Movie Get(int id)
