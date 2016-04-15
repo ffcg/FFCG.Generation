@@ -52,10 +52,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CellTests.cs" />
+    <Compile Include="GameOfLifeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="LifeRulesTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FFCG.G4.GameOfLife\FFCG.G4.GameOfLife.csproj">
+      <Project>{B8417B8B-25B2-40C7-942E-36195B8B7A24}</Project>
+      <Name>FFCG.G4.GameOfLife</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
