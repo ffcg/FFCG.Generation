@@ -34,7 +34,7 @@ namespace FFCG.G5.FizzBuzz.Tests
         }
 
         [TestMethod]
-        public void Numbers_divisible_by_3_or_5_should_be_fizzbuzz()
+        public void Numbers_divisible_by_3_and_5_should_be_fizzbuzz()
         {
             Assert.AreEqual("FizzBuzz", _result[14]);
             Assert.AreEqual("FizzBuzz", _result[29]);
