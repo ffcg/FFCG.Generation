@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace FFCG.G5.FizzBuzz.Tests
 {
     [TestClass]
-    public class FizzBuzzTests
+    public class When_getting_result_items_from_FizzBuzz
     {
         private List<string> _result;
 
@@ -14,7 +14,7 @@ namespace FFCG.G5.FizzBuzz.Tests
         public void SetUp()
         {
             var fizzBuzz = new FizzBuzz();
-            _result = fizzBuzz.GetResultSerie();
+            _result = fizzBuzz.GetResultItems();
         }
 
         [TestMethod]
@@ -42,19 +42,19 @@ namespace FFCG.G5.FizzBuzz.Tests
         }
 
         [TestMethod]
-        public void Serie_should_start_with_one()
+        public void The_first_item_should_be_1()
         {
             Assert.AreEqual("1", _result.First());
         }
 
         [TestMethod]
-        public void Serie_should_ends_with_Buzz()
+        public void The_last_item_should_be_Buzz()
         {
             Assert.AreEqual("Buzz", _result.Last());
         }
 
         [TestMethod]
-        public void Serie_should_have_count_100()
+        public void Should_contains_100_items()
         {
             Assert.AreEqual(100, _result.Count);
         }
