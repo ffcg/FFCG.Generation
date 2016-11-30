@@ -21,11 +21,6 @@ namespace FFCG.G4.CardGame.Game
             Reset();
         }
 
-        public static Deck Create(IShuffelCards cardShuffler, ICreateASetOfCards setOfCards)
-        {
-            return new Deck(cardShuffler, setOfCards);
-        }
-
         public void Reset()
         {
             var allCards = _setOfCards.CreateAllAvailableCardsInADeck().ToList();

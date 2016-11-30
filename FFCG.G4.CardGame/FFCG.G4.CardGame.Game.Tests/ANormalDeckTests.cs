@@ -11,8 +11,8 @@ namespace FFCG.G4.CardGame.Game.Tests
     {
         private IEnumerable<Card> _allAvailableCardsInADeck;
 
-        [TestFixtureSetUp]
-        public void TestFixtureSetUp()
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
         {
             var aNormalDeck = new ANormalDeck();
             _allAvailableCardsInADeck = aNormalDeck.CreateAllAvailableCardsInADeck();

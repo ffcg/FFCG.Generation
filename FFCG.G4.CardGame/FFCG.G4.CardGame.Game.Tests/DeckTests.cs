@@ -15,7 +15,7 @@ namespace FFCG.G4.CardGame.Game.Tests
         private Deck _deck;
 
         [SetUp]
-        public void TestFixtureSetUp()
+        public void SetUp()
         {
             _setOfCards = new ANormalDeck();
             _shuffelCards = new TestShuffler();

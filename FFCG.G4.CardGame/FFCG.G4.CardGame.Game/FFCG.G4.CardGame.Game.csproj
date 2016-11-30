@@ -39,6 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HandRules\FiveCardRule.cs" />
+    <Compile Include="HandRules\IHandRule.cs" />
+    <Compile Include="HandRules\IJudge.cs" />
+    <Compile Include="HandRules\JudgeRoslin.cs" />
+    <Compile Include="HandRules\NothingRule.cs" />
+    <Compile Include="HandRules\RoyalStraightFlushRule.cs" />
     <Compile Include="TypeOfDeckBuilder\ANormalDeck.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="CardNames.cs" />

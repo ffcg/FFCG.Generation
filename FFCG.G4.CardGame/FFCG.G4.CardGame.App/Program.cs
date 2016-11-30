@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using FFCG.G4.CardGame.Game;
+using FFCG.G4.CardGame.Game.HandRules;
 using FFCG.G4.CardGame.Game.Shuffler;
 using FFCG.G4.CardGame.Game.TypeOfDeckBuilder;
 
@@ -11,27 +12,35 @@ namespace FFCG.G4.CardGame.App
 {
     class Program
     {
+        private static readonly JudgeRoslin JudgeRoslin = new JudgeRoslin(new List<IHandRule> {new RoyalStraightFlushRule(), new FiveCardRule(), new NothingRule()});
+
         static void Main(string[] args)
         {
-            var consoleCardPrinter = new ConsoleCardPrinter();
-            bool isStillRunning = true;
-            int numberOfHands = 0;
 
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
-            Console.WriteLine("SLOW...");
-            numberOfHands = Slow(consoleCardPrinter);
-            stopwatch.Stop();
-            Console.WriteLine("DONE in {0} - {1}", stopwatch.Elapsed, numberOfHands);
-            
-            stopwatch.Reset();
-            stopwatch.Start();
-            Console.WriteLine("FAST...");
-            numberOfHands = Fast(consoleCardPrinter);
-            stopwatch.Stop();
+            var deck = new Deck(new GuidShuffler(), new ANormalDeck());
+            deck.Shuffle();
+            var hand = deck.TakeOneHand();
+            var check = JudgeRoslin.Check(hand);
+            Console.WriteLine(check);
 
-            Console.WriteLine("DONE in {0} - {1}", stopwatch.Elapsed, numberOfHands);
-            Console.ReadLine();
+
+            //var consoleCardPrinter = new ConsoleCardPrinter();
+
+            //var stopwatch = new Stopwatch();
+            //stopwatch.Start();
+            //Console.WriteLine("SLOW...");
+            //var numberOfHands = Slow(consoleCardPrinter);
+            //stopwatch.Stop();
+            //Console.WriteLine("DONE in {0} - {1}", stopwatch.Elapsed, numberOfHands);
+
+            //stopwatch.Reset();
+            //stopwatch.Start();
+            //Console.WriteLine("FAST...");
+            //numberOfHands = Fast(consoleCardPrinter);
+            //stopwatch.Stop();
+
+            //Console.WriteLine("DONE in {0} - {1}", stopwatch.Elapsed, numberOfHands);
+            //Console.ReadLine();
         }
 
         private static int Slow(ConsoleCardPrinter consoleCardPrinter)
@@ -44,7 +53,7 @@ namespace FFCG.G4.CardGame.App
                 deck.Shuffle();
                 var hand = deck.TakeOneHand();
 
-                if (CheckIfHandHoldFourAces(hand))
+                if (IsRoyalStraightFlush(hand))
                 {
                     var cards = hand.Cards();
                     consoleCardPrinter.Print(cards);
@@ -59,17 +68,22 @@ namespace FFCG.G4.CardGame.App
             return numberOfHands;
         }
 
+        private static bool IsRoyalStraightFlush(Hand hand)
+        {
+            return JudgeRoslin.Check(hand) == "Royal Straight Flush!";
+        }
+
         private static int Fast(ConsoleCardPrinter consoleCardPrinter)
         {
             int numberOfHands = 0;
             bool isStillRunning = true;
-            While(new ParallelOptions {MaxDegreeOfParallelism = 5}, () => { return isStillRunning; }, state =>
+            While(new ParallelOptions {MaxDegreeOfParallelism = 5}, () => isStillRunning, state =>
             {
                 var deck = new Deck(new GuidShuffler(), new ANormalDeck());
                 deck.Shuffle();
                 var hand = deck.TakeOneHand();
 
-                if (CheckIfHandHoldFourAces(hand))
+                if (IsRoyalStraightFlush(hand))
                 {
                     var cards = hand.Cards();
                     consoleCardPrinter.Print(cards);
@@ -96,17 +110,6 @@ namespace FFCG.G4.CardGame.App
         private static IEnumerable<bool> Infinite()
         {
             while (true) yield return true;
-        }
-
-        private static bool CheckIfHandHoldFourAces(Hand currentHand)
-        {
-            foreach (var suite in currentHand.Cards().GroupBy(x => x.Suit))
-            {
-                if (suite.Count(x => x.Value > 9) == 5)
-                    return true;
-            }
-            return false;
-            //return currentHand.Cards().Count(x => x.Name == CardNames.Ace) == 4;
         }
     }
 
