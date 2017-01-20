@@ -1,0 +1,15 @@
+<h1>Products</h1>
+
+<p>Below you will find our selection of breathtakingly awesome products.</p>
+
+<p *ngIf="!products"><em>Loading products...</em></p>
+
+<div class="products-list" *ngIf="products">
+    <div class="product" *ngFor="let product of products">
+        <div class="name">{{ product.name }}</div>
+        <img class="image" src="{{product.image}}" />
+        <div>{{ product.description }}</div>
+        <div class="price">Price: {{ product.price }} kr</div>
+        <button class="btn btn-primary cart-button">Add to cart</button>
+    </div>
+</div>
