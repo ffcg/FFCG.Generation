@@ -10,6 +10,6 @@
         <img class="image" src="{{product.image}}" />
         <div>{{ product.description }}</div>
         <div class="price">Price: {{ product.price }} kr</div>
-        <button class="btn btn-primary cart-button">Add to cart</button>
+        <button class="btn btn-primary cart-button" (click)="addToCart(product)">Add to cart</button>
     </div>
 </div>

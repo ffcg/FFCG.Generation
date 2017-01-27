@@ -1,0 +1,30 @@
+.added-products {
+    list-style: none;
+    padding: 0;
+}
+
+.added-products li {
+    margin-bottom: 20px;
+}
+
+.thumbnail {
+    margin-bottom: 10px;
+    width: 50px;
+    display: inline-block;
+}
+
+.name {
+    display: inline-block;
+    font-size: 18px;
+}
+
+.remove-product-button {
+    display: inline-block;
+    background: none;
+    border: none;
+    color: orange;
+}
+
+.total {
+    font-weight: bold;
+}

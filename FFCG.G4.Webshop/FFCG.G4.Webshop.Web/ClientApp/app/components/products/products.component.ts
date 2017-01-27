@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
+import { IProduct } from '../shared/product'
+import { ShoppingcartService } from '../shoppingcart/shoppingcart.service'
 
 @Component({
     selector: 'products',
@@ -7,20 +9,15 @@ import { Http } from '@angular/http';
     styles: [require('./products.component.css')]
 })
 export class ProductsComponent {
-    public products: IProducts[]
+    public products: IProduct[]
 
-    constructor(http: Http){
+    constructor(http: Http, private shoppingcartService: ShoppingcartService){
         http.get('/api/products').subscribe(result => {
             this.products = result.json();
-        });       
+        });     
     }
-}
 
-interface IProducts {
-    name: string;
-    id: string;
-    category: string;
-    description: string;
-    price: number;
-    image: string;
+    addToCart(product: IProduct) {
+        this.shoppingcartService.addToCart(product)
+    }
 }

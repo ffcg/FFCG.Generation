@@ -1,0 +1,24 @@
+<h1>Shopping Cart</h1>
+
+<p *ngIf="products.length == 0">There are no items in your shopping cart.</p>
+<p *ngIf="products.length > 0">Here are the items you have added to your cart.</p>
+
+<p *ngIf="!products"><em>Loading products...</em></p>
+
+<ul class="added-products" *ngIf="products">
+    <li *ngFor="let product of products">
+        <img class="thumbnail" src="{{product.image}}" />
+        <div class="name">{{ product.name }}</div>
+        <button class="remove-product-button" (click)="removeFromCart(product)"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span></button>
+        <div>{{ product.price }} kr</div>
+    </li>
+</ul>
+
+<div *ngIf="products.length > 0">
+    <div class="total">
+        Total: {{ sum() }}
+    </div>
+    <div>
+        <button class="btn btn-primary">Go to Payment</button>
+    </div>
+</div>

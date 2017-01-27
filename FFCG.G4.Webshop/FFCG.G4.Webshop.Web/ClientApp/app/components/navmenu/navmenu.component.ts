@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ShoppingcartService } from '../shoppingcart/shoppingcart.service'
 
 @Component({
     selector: 'nav-menu',
@@ -6,4 +7,13 @@ import { Component } from '@angular/core';
     styles: [require('./navmenu.component.css')]
 })
 export class NavMenuComponent {
+    public numberOfProductsAdded: number
+
+    constructor(shoppingcartService: ShoppingcartService){
+        shoppingcartService.cartChanged$.subscribe(
+            numberOfProducts =>  {
+                this.numberOfProductsAdded = numberOfProducts
+            }
+        )
+    }
 }

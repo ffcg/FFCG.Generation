@@ -18,18 +18,14 @@
                     </a>
                 </li>
                 <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/counter']">
-                        <span class='glyphicon glyphicon-education'></span> Counter
-                    </a>
-                </li>
-                <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/fetch-data']">
-                        <span class='glyphicon glyphicon-th-list'></span> Fetch data
-                    </a>
-                </li>
-                <li [routerLinkActive]="['link-active']">
                     <a [routerLink]="['/products']">
                         <span class='glyphicon glyphicon-th-list'></span> Products
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/cart']">
+                        <span class='glyphicon glyphicon-th-list'></span> Shopping Cart
+                        <span class="badge products-badge" *ngIf="numberOfProductsAdded > 0">{{ numberOfProductsAdded }}</span>
                     </a>
                 </li>
             </ul>
