@@ -26,4 +26,28 @@ describe('Text Manipulator', () => {
 
         expect(result).toBe('Here is oof. Here is rehtona sentence.')
     })
+
+    it('should capitalize first and last letter in specified words', function() {
+        const textCapitalizeRule = new TextCapitalizeRule(["another"])
+
+        let input = "Here is foo. Here is another sentence."
+
+        textManipulator = new TextManipulator([textCapitalizeRule])
+
+        let result = textManipulator.manipulateText(input)
+        
+        expect(result).toBe('Here is foo. Here is AnotheR sentence.')
+    })
+
+    it('should concatenate words', () => {
+        const textConcatenationRule = new TextConcatenationRule(["pengar"])
+
+        textManipulator = new TextManipulator([textConcatenationRule])
+
+        let input = "Spara pengar genom att späda ut mjölk."
+
+        let result = textManipulator.manipulateText(input)
+
+        expect(result).toBe("Spara pengen genom att späda ut mjölk.")
+    })
 })

@@ -1,15 +1,8 @@
-class TextReverseRule {
+class TextReverseRule extends TextBaseRule {
     constructor(wordsToReverse) {
+        super()
         this.wordsToReverse = wordsToReverse
-    }
-
-    manipulate(text) {
-        return text
-        .replace(/\./g, ' . ')
-        .split(' ')
-        .map(w => this.reverse(w))
-        .join(' ')
-        .replace(/\ . /g, '.')
+        this.manipulationFunction = this.reverse.bind(this)
     }
 
     reverse(word) {

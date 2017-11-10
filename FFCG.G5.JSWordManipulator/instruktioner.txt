@@ -1,0 +1,6 @@
+För att få upp samma typ av miljö som vi använde under demon:
+
+1. Hämta hem WallabyJS och installera för antingen Visual Studio eller Visual Studio Code
+2. Hämta hem Node från https://nodejs.org/en/download/. Pakethanteraren NPM ingår.
+3. Navigera till projektroten och hämta dependencies genom kommandot 'npm install'.
+4. Öppna koden i din editor och kör igång WallabyJS.
