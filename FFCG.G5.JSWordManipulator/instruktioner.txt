@@ -4,3 +4,26 @@ För att få upp samma typ av miljö som vi använde under demon:
 2. Hämta hem Node från https://nodejs.org/en/download/. Pakethanteraren NPM ingår.
 3. Navigera till projektroten och hämta dependencies genom kommandot 'npm install'.
 4. Öppna koden i din editor och kör igång WallabyJS.
+
+Konfigurera WallabyJS genom att skapa en fil i roten med namn 'wallaby.js' och med 
+följande innehåll:
+
+module.exports = function (wallaby) {
+    return {
+      files: [
+        { pattern: 'node_modules/babel-polyfill/dist/polyfill.js', instrument: false  },
+        { pattern: 'src/**/*.js' },
+        { pattern: 'src/app.js', ignore: true }
+      ],
+  
+      tests: [
+        { pattern: 'test/**/*spec.js' }
+      ],
+
+      testFramework: 'jasmine',
+
+      compilers: {
+        '**/*.js': wallaby.compilers.babel()
+      }
+    }
+}
