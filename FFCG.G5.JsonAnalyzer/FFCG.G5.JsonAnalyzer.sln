@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFCG.G5.JsonAnalyzer", "FFCG.G5.JsonAnalyzer\FFCG.G5.JsonAnalyzer.csproj", "{14CF0FF0-3712-43A6-B085-9085881807CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{14CF0FF0-3712-43A6-B085-9085881807CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14CF0FF0-3712-43A6-B085-9085881807CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14CF0FF0-3712-43A6-B085-9085881807CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14CF0FF0-3712-43A6-B085-9085881807CE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {112AAB28-487C-4543-A26F-51D9193AB68D}
+	EndGlobalSection
+EndGlobal

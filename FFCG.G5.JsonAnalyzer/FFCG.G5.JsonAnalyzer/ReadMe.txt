@@ -1,0 +1,1 @@
+﻿Det här är en övning för att lösa Advent Of Code (2015) - Dag 12: https://adventofcode.com/2015/day/12. Observera att input är unik för varje användare.
