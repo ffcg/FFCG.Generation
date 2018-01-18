@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "FFCG.Weather.API": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "launchUrl": "api/stations/112170",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:31869/"
+    }
+  }
+}
