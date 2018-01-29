@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Net.Http;
 using FFCG.Weather.Models;
@@ -32,24 +34,40 @@ namespace FFCG.Weather.Importer
                 weatherStations.Add(weatherStation);
             }
 
+            //StoreInLocalTextFile(weatherStations);
+
+            StoreInLocalDatabase(weatherStations);
+
+            Console.WriteLine();
+            Console.WriteLine("All done!");
+        }
+
+        private static void StoreInLocalDatabase(List<WeatherStation> weatherStations)
+        {
+            var connectionString =
+                "Server=(LocalDb)\\MSSQLLocalDB;Initial Catalog=GenerationWeather;Integrated Security=SSPI;Trusted_Connection=yes;";
+            var connection = new SqlConnection(connectionString);
+            connection.Open();
+            int i = 0;
+            foreach (var station in weatherStations)
+            {
+                var command = connection.CreateCommand();
+                command.CommandText = $"INSERT INTO Stations VALUES ('{station.Id}', '{station.Name}', {station.Longitude.ToString().Replace(",", ".")}, {station.Latitude.ToString().Replace(",", ".")}, {station.Altitude.ToString().Replace(",", ".")});";
+
+                command.ExecuteNonQuery();
+                i++;
+                var progress =  (decimal)i / weatherStations.Count;
+                
+                Console.Write($"\r{progress:P}");
+            }
+        }
+
+
+        private static void StoreInLocalTextFile(List<WeatherStation> weatherStations)
+        {
             var json = JsonConvert.SerializeObject(weatherStations);
 
-            File.WriteAllText(@"C:\dev\Education\FFCG.Weather\weather.data\stations", json);
+            File.WriteAllText(@"C:\dev\Education\FFCG.Generation\FFCG.Weather\weather.data\stations", json);
         }
-    }
-
-
-    public class SmhiResponseObject
-    {
-        public Station[] station { get; set; }
-    }
-
-    public class Station
-    {
-        public string name { get; set; }
-        public int id { get; set; }
-        public float height { get; set; }
-        public float latitude { get; set; }
-        public float longitude { get; set; }
     }
 }
