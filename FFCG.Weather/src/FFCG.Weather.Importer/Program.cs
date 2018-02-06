@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
 using System.Net.Http;
+using FFCG.Weather.Data;
 using FFCG.Weather.Models;
 using Newtonsoft.Json;
 
@@ -36,10 +37,22 @@ namespace FFCG.Weather.Importer
 
             //StoreInLocalTextFile(weatherStations);
 
-            StoreInLocalDatabase(weatherStations);
+            //StoreInLocalDatabase(weatherStations);
+
+            StoreWithEntityFramework(weatherStations);
 
             Console.WriteLine();
             Console.WriteLine("All done!");
+        }
+
+        private static void StoreWithEntityFramework(List<WeatherStation> weatherStations)
+        {
+            using (var db = new WeatherContext())
+            {
+                db.Stations.AddRange(weatherStations);
+                db.SaveChanges();
+            }
+
         }
 
         private static void StoreInLocalDatabase(List<WeatherStation> weatherStations)
