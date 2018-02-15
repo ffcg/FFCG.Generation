@@ -9,10 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FFCG.Weather.Models", "FFCG
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FFCG.Weather.API", "FFCG.Weather.API\FFCG.Weather.API.csproj", "{2E646A44-0D46-432E-BB9F-C728296DE7A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFCG.Weather.Data", "FFCG.Weather.Data\FFCG.Weather.Data.csproj", "{BFF89AD0-65F4-455F-94C6-5CEB45633A6B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FFCG.Weather.Data.Tools", "FFCG.Weather.Data.Tools\FFCG.Weather.Data.Tools.csproj", "{871E52DD-224E-4C64-A688-FF86DAF32069}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,14 +27,6 @@ Global
 		{2E646A44-0D46-432E-BB9F-C728296DE7A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E646A44-0D46-432E-BB9F-C728296DE7A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E646A44-0D46-432E-BB9F-C728296DE7A1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BFF89AD0-65F4-455F-94C6-5CEB45633A6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BFF89AD0-65F4-455F-94C6-5CEB45633A6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BFF89AD0-65F4-455F-94C6-5CEB45633A6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BFF89AD0-65F4-455F-94C6-5CEB45633A6B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{871E52DD-224E-4C64-A688-FF86DAF32069}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{871E52DD-224E-4C64-A688-FF86DAF32069}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{871E52DD-224E-4C64-A688-FF86DAF32069}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{871E52DD-224E-4C64-A688-FF86DAF32069}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

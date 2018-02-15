@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace FFCG.Weather.Data.Tools.Migrations
+namespace FFCG.Weather.API.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
 using System.Net.Http;
-using FFCG.Weather.Data;
 using FFCG.Weather.Models;
 using Newtonsoft.Json;
 
@@ -13,45 +12,40 @@ namespace FFCG.Weather.Importer
     {
         static void Main(string[] args)
         {
-            var httpClient = new HttpClient();
+            //var httpClient = new HttpClient();
 
-            var response = httpClient.GetStringAsync("https://opendata-download-metobs.smhi.se/api/version/latest/parameter/1.json").Result;
+            //var response = httpClient.GetStringAsync("https://opendata-download-metobs.smhi.se/api/version/latest/parameter/1.json").Result;
 
-            var root = JsonConvert.DeserializeObject<SmhiResponseObject>(response);
+            //var root = JsonConvert.DeserializeObject<SmhiResponseObject>(response);
 
-            var weatherStations = new List<WeatherStation>();
+            //var weatherStations = new List<WeatherStation>();
             
-            foreach (var station in root.station)
-            {
-                var weatherStation = new WeatherStation
-                {
-                    Id = station.id.ToString(),
-                    Name = station.name,
-                    Altitude = station.height,
-                    Latitude = station.latitude,
-                    Longitude = station.longitude
-                };
+            //foreach (var station in root.station)
+            //{
+            //    var weatherStation = new WeatherStation
+            //    {
+            //        Id = station.id.ToString(),
+            //        Name = station.name,
+            //        Altitude = station.height,
+            //        Latitude = station.latitude,
+            //        Longitude = station.longitude
+            //    };
 
-                weatherStations.Add(weatherStation);
-            }
+            //    weatherStations.Add(weatherStation);
+            //}
 
-            //StoreInLocalTextFile(weatherStations);
+            ////StoreInLocalTextFile(weatherStations);
 
-            //StoreInLocalDatabase(weatherStations);
+            ////StoreInLocalDatabase(weatherStations);
 
-            StoreWithEntityFramework(weatherStations);
+            //StoreWithEntityFramework(weatherStations);
 
-            Console.WriteLine();
-            Console.WriteLine("All done!");
+            //Console.WriteLine();
+            //Console.WriteLine("All done!");
         }
 
         private static void StoreWithEntityFramework(List<WeatherStation> weatherStations)
         {
-            using (var db = new WeatherContext())
-            {
-                db.Stations.AddRange(weatherStations);
-                db.SaveChanges();
-            }
 
         }
 

@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FFCG.Weather.Data\FFCG.Weather.Data.csproj" />
     <ProjectReference Include="..\FFCG.Weather.Models\FFCG.Weather.Models.csproj" />
   </ItemGroup>
 
