@@ -10,7 +10,7 @@ using System;
 namespace FFCG.Weather.API.Migrations
 {
     [DbContext(typeof(WeatherContext))]
-    [Migration("20180215140426_initial")]
+    [Migration("20180215152705_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

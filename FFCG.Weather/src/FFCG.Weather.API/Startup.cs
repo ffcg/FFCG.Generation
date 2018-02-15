@@ -1,4 +1,6 @@
 ﻿using FFCG.Weather.API.Data;
+using FFCG.Weather.API.Repositories;
+using FFCG.Weather.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +23,8 @@ namespace FFCG.Weather.API
         {
             services.AddDbContext<WeatherContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IWeatherStationRepository, WeatherStationRepository>();
 
             services.AddMvc();
         }

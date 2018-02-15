@@ -1,40 +1,30 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using FFCG.Weather.API.Data;
 using FFCG.Weather.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace FFCG.Weather.API.Controllers
 {
     [Route("api/[controller]")]
     public class StationsController : Controller
     {
-        private readonly DbContextOptions<WeatherContext> _options;
+        private readonly IWeatherStationRepository _repository;
 
-        public StationsController()
+        public StationsController(IWeatherStationRepository repository)
         {
-            var optionsBuilder = new DbContextOptionsBuilder<WeatherContext>();
-            optionsBuilder.UseSqlServer("Server=(LocalDb)\\MSSQLLocalDB;Initial Catalog=GenerationWeather.EF;Integrated Security=SSPI;Trusted_Connection=yes;");
-            _options = optionsBuilder.Options;
+            _repository = repository;
         }
 
         [HttpGet]
         public List<WeatherStation> Get()
         {
-            using (var db = new WeatherContext(_options))
-            {
-                return db.Stations.OrderBy(x => x.Name).ToList();
-            }
+            return _repository.All().OrderBy(x => x.Name).ToList();
         }
 
         [HttpGet("{id}")]
         public WeatherStation Get(string id)
-        { 
-            using (var db = new WeatherContext(_options))
-            {
-                return db.Stations.FirstOrDefault(x => x.Id == id); 
-            }    
+        {
+            return _repository.Load(id);
         }
     }
 }

@@ -8,19 +8,16 @@ using Newtonsoft.Json;
 
 namespace FFCG.Weather.API.Import.Controllers
 {
-   
     [Route("api/import/smhi/stations")]
     public class ImportSmhiStationsController : ControllerBase
     {
-        private readonly DbContextOptions<WeatherContext> _options;
-
-        public ImportSmhiStationsController()
+        private readonly WeatherContext _db;
+        public ImportSmhiStationsController(WeatherContext db)
         {
-            var optionsBuilder = new DbContextOptionsBuilder<WeatherContext>();
-            optionsBuilder.UseSqlServer("Server=(LocalDb)\\MSSQLLocalDB;Initial Catalog=GenerationWeather.EF;Integrated Security=SSPI;Trusted_Connection=yes;");
-            _options = optionsBuilder.Options;
+            _db = db;
         }
 
+        [HttpPost]
         public IActionResult Post()
         {
             var httpClient = new HttpClient();
@@ -30,7 +27,7 @@ namespace FFCG.Weather.API.Import.Controllers
             var root = JsonConvert.DeserializeObject<SmhiResponseObject>(response);
 
             var weatherStations = new List<WeatherStation>();
-            
+
             foreach (var station in root.station)
             {
                 var weatherStation = new WeatherStation
@@ -44,13 +41,9 @@ namespace FFCG.Weather.API.Import.Controllers
 
                 weatherStations.Add(weatherStation);
             }
-
-            using (var db = new WeatherContext(_options))
-            {
-                db.Database.ExecuteSqlCommand("TRUNCATE TABLE [Stations]");
-                db.AddRange(weatherStations);
-                db.SaveChanges();
-            }
+            
+            _db.AddRange(weatherStations);
+            _db.SaveChanges();
 
             return Ok("Import completed!");
         }
