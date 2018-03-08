@@ -1,4 +1,5 @@
 ﻿using FFCG.Weather.API.Data;
+using FFCG.Weather.API.Import;
 using FFCG.Weather.API.Repositories;
 using FFCG.Weather.Models;
 using Microsoft.AspNetCore.Builder;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace FFCG.Weather.API
 {
@@ -21,6 +23,13 @@ namespace FFCG.Weather.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var settings = new ExternalEndpoints();
+            Configuration.Bind("ExternalEndpoints", settings);
+
+            services.AddSingleton(settings);
+
+            services.AddSingleton<IStationsDownloader, SmhiStationsDownloader>();
+            
             services.AddDbContext<WeatherContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 

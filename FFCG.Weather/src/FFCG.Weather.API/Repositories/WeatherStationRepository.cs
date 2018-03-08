@@ -32,5 +32,15 @@ namespace FFCG.Weather.API.Repositories
         {
             return _db.Stations.ToList();
         }
+
+        public IEnumerable<TemperatureReading> GetReadingsByStationId(string id, int page = 1, int pageSize = 50)
+        {
+            return _db.TemperatureReadings
+                .Where(x => x.Station.Id == id)
+                .OrderByDescending(x => x.Date)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+        }
     }
 }

@@ -26,5 +26,10 @@ namespace FFCG.Weather.API.Repositories
                 }
             };
         }
+
+        public IEnumerable<TemperatureReading> GetReadingsByStationId(string id, int page = 1, int pageSize = 50)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
