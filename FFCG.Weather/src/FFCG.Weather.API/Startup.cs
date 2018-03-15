@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Raven.Client.Documents;
 
 namespace FFCG.Weather.API
 {
@@ -29,7 +30,17 @@ namespace FFCG.Weather.API
             services.AddSingleton(settings);
 
             services.AddSingleton<IStationsDownloader, SmhiStationsDownloader>();
-            
+
+            IDocumentStore documentStore = new DocumentStore
+            {
+                Urls = new[] {Configuration["Raven.URL"]},
+                Database = Configuration["Raven.Database"]
+            };
+
+            documentStore.Initialize();
+
+            services.AddSingleton<IDocumentStore>(documentStore);
+
             services.AddDbContext<WeatherContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
