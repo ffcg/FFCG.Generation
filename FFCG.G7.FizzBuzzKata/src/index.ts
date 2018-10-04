@@ -24,4 +24,4 @@ const generateAnswers = (duration: number) => {
     oneSecond)
 }
 
-generateAnswers(100)
+generateAnswers(1000)
