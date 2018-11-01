@@ -10,8 +10,7 @@ describe('Concatenation rule', () => {
     it('should concatenate words', () => {
         const array = 'Dessa regel rätta kodninjor.'.split(' ')
 
-        expect(rule.manipulate('regel', 1, array)).toBe('')
-        expect(rule.manipulate('rätta', 2, array)).toBe('regelrätta')
+        expect(rule.manipulate('regel', 1, array)).toBe('regelrätta')
     })
 
     it('should handle', () => {

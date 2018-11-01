@@ -18,12 +18,11 @@ export class ConcatenationRule extends ManipulateWordBaseRule {
     manipulate(word: string, index?: number, array?: Array<string>) {
         const wordParts = this.wordParts.find(x => x.two === word || x.one === word)
 
-        if (array[index - 1] === wordParts.one) {
-            return wordParts.one + wordParts.two.toLowerCase()
-        } 
         if(array[index + 1] === wordParts.two) {
-            return ''
+            array[index + 1] = ''
+            return wordParts.one + wordParts.two.toLowerCase()
         }
+        
         return word
     }
 }
