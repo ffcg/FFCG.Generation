@@ -22,7 +22,7 @@ describe('Movie collection', () => {
 class FakeStorage implements IStorage<Movie> {
     private _movies = []
 
-    load(id: string) {
+    load(id: string): Movie {
         return this._movies.find(m => m.id === id)
     }
 
