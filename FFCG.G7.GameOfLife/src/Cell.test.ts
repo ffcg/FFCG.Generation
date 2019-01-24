@@ -13,7 +13,7 @@ describe('Cell', () => {
             new LiveCellWithTwoOrThreeNeighborsRule()]
         const cell = new Cell(lifeRules, true)
 
-        const newCell = cell.split(3)
+        const newCell = cell.next(3)
 
         expect(newCell.isAlive).toBe(true)
     })

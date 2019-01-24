@@ -9,7 +9,7 @@ export class Cell {
         this.isAlive = isAlive
     }
 
-    split(numberOfNeighbors): Cell {
+    next(numberOfNeighbors): Cell {
         const shouldLive = this.lifeRules.filter(r => r.canHandle(this.isAlive)).every(r => r.shouldLive(numberOfNeighbors))
         return new Cell(this.lifeRules, shouldLive)
     }
