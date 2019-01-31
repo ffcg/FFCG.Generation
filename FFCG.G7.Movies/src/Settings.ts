@@ -2,8 +2,13 @@ import { readFileSync } from "fs";
 
 export class Settings {
     connectionString: string
+    apiAddress: string
+    apiPort: number
 
     constructor(configName: string) {
-        this.connectionString = readFileSync(configName).toString().split(' ')[1]
+        const config = JSON.parse(readFileSync(configName).toString())
+        this.connectionString = config.connectionString
+        this.apiAddress = config.apiBaseAddress + ':' + config.apiPort
+        this.apiPort = config.apiPort
     }
 }
