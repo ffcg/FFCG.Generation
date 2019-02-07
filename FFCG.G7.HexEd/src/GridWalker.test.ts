@@ -7,12 +7,12 @@ describe('Grid walker', () => {
         gridWalker = new GridWalker()
     })
 
-    it('should walk expected distance in examples', () => {
+    it('should find shortest distance in examples', () => {
         const examples = [
-            { path: 'ne, ne, ne', expectedDistance: 3},
-            { path: 'ne,ne,sw,sw', expectedDistance: 0},
-            { path: 'ne,ne,s,s', expectedDistance: 2},
-            { path: 'se,sw,se,sw,sw', expectedDistance: 3}
+            { path: 'ne, ne, ne', expectedDistance: 3 },
+            { path: 'ne,ne,sw,sw', expectedDistance: 0 },
+            { path: 'ne,ne,s,s', expectedDistance: 2 },
+            { path: 'se,sw,se,sw,sw', expectedDistance: 3 }
         ]
 
         examples.forEach(example => {
