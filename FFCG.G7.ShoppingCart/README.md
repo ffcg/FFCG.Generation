@@ -23,7 +23,7 @@ Kampanj - Fram till slutet på april sparar du 10% om du köper en Kashmirtröja
 
 Kampanj - 20kr av totalbeloppet dras av om du handlar mat för minst 200kr
 
-Kampanj - Spara 2% på totalbeloppet om du handlar för mer än 3000kr. Appliceras inte på redan rabatterade föremål.
+Kampanj - Spara 2% på totalbeloppet om du handlar för mer än 3000kr.
 
 Alla applicerade rabatter ska finnas tillgängliga så att användaren kan se vilka rabatter och erbjudandet som applicerats och minskat totalbeloppet.
 
