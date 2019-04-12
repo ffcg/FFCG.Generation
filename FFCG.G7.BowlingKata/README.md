@@ -1,0 +1,1 @@
+Övningsbeskrivningen hittar ni här: http://codingdojo.org/kata/Bowling/
