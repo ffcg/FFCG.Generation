@@ -1,41 +1,7 @@
-class PaymentService {
-  makePayment(items: any[], creditCardInformation: any): Promise<any> {
-    console.log("Making payment");
-    return Promise.resolve();
-  }
-}
-
-class Customer {
-  id: string;
-  name: string;
-  email: string;
-  phoneNumber: string;
-  deviceId: string;
-}
-
-class CustomerRepository {
-  get(id: string): Promise<Customer> {
-    var fakeCustomer = new Customer();
-    fakeCustomer.id = "id";
-    fakeCustomer.name = "Erik";
-    fakeCustomer.email = "erik@forefront.se";
-    fakeCustomer.phoneNumber = "0701020345";
-    fakeCustomer.deviceId = "deviceId";
-    return Promise.resolve(fakeCustomer);
-  }
-}
-
-class EmailService {
-  sendEmail(email: string, content: string) {
-    console.log(`Sending an email to ${email}`);
-  }
-}
-
-class SmsService {
-  sendSms(phoneNumber: string, content: string, shippingInformation: any) {
-    console.log(`Sending an SMS to ${phoneNumber}`);
-  }
-}
+import { PaymentService } from "./PaymentService";
+import { CustomerRepository } from "./CustomerRepository";
+import { SmsService } from "./SmsService";
+import { INotifyCustomerAboutOrder } from "./OrderNotifications/INotifyCustomerAboutOrder";
 
 class PushNotificationService {
   push(deviceId: string, content: string) {
@@ -58,20 +24,16 @@ class ItemRepository {
 class OrderHandler {
   paymentService: PaymentService;
   customerRepository: CustomerRepository;
-  emailService: EmailService;
-  smsService: SmsService;
-  pushNotificationService: PushNotificationService;
   logger: Logger;
   itemRepository: ItemRepository;
+  notificationServices: INotifyCustomerAboutOrder[];
 
-  constructor() {
+  constructor(notificationServices: INotifyCustomerAboutOrder[]) {
     this.paymentService = new PaymentService();
     this.customerRepository = new CustomerRepository();
-    this.emailService = new EmailService();
-    this.smsService = new SmsService();
-    this.pushNotificationService = new PushNotificationService();
     this.logger = new Logger();
     this.itemRepository = new ItemRepository();
+    this.notificationServices = notificationServices;
   }
 
   handle(items: any[], userId: string, creditCardInformation: any) {
@@ -79,18 +41,9 @@ class OrderHandler {
       .makePayment(items, creditCardInformation)
       .then(result => {
         this.customerRepository.get(userId).then(customer => {
-          this.emailService.sendEmail(customer.email, "Grattis till köpet!");
-          this.smsService.sendSms(
-            customer.phoneNumber,
-            "Grattis till köpet!",
-            "Shipping information"
-          );
-          for (var i = 0; i < 10; i++) {
-            this.pushNotificationService.push(
-              customer.deviceId,
-              "Grattis till köpet!"
-            );
-          }
+          for (var i = 0; i < this.notificationServices.length; i++)
+            this.notificationServices[i].notify(customer, {});
+
           this.logger.log(`User ${userId} made a purchase`);
           this.itemRepository.removeItems(items);
         });
@@ -98,7 +51,8 @@ class OrderHandler {
   }
 }
 
-var orderHandler = new OrderHandler();
+var notificationServices: INotifyCustomerAboutOrder[] = [new SmsService()];
+var orderHandler = new OrderHandler(notificationServices);
 var items = [];
 var userId = "userId";
 var creditCardInformation = {};
