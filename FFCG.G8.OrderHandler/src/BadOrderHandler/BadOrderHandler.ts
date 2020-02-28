@@ -2,6 +2,8 @@ import { PaymentService } from "./PaymentService";
 import { CustomerRepository } from "./CustomerRepository";
 import { SmsService } from "./SmsService";
 import { INotifyCustomerAboutOrder } from "./OrderNotifications/INotifyCustomerAboutOrder";
+import { ILogger, Logger } from "./Logger";
+import { IItemRepository, ItemRepository } from "./ItemRepository";
 
 class PushNotificationService {
   push(deviceId: string, content: string) {
@@ -9,35 +11,31 @@ class PushNotificationService {
   }
 }
 
-class Logger {
-  log(message: string) {
-    console.log(message);
-  }
-}
-
-class ItemRepository {
-  removeItems(items: any[]) {
-    console.log("Removing items from database");
-  }
-}
-
-class OrderHandler {
+export class OrderHandler {
   paymentService: PaymentService;
   customerRepository: CustomerRepository;
   logger: Logger;
-  itemRepository: ItemRepository;
+  itemRepository: IItemRepository;
   notificationServices: INotifyCustomerAboutOrder[];
 
-  constructor(notificationServices: INotifyCustomerAboutOrder[]) {
+  constructor(
+    notificationServices: INotifyCustomerAboutOrder[],
+    logger: ILogger,
+    itemRepository: IItemRepository
+  ) {
     this.paymentService = new PaymentService();
     this.customerRepository = new CustomerRepository();
-    this.logger = new Logger();
-    this.itemRepository = new ItemRepository();
+    this.logger = logger;
+    this.itemRepository = itemRepository;
     this.notificationServices = notificationServices;
   }
 
-  handle(items: any[], userId: string, creditCardInformation: any) {
-    this.paymentService
+  handle(
+    items: any[],
+    userId: string,
+    creditCardInformation: any
+  ): Promise<any> {
+    return this.paymentService
       .makePayment(items, creditCardInformation)
       .then(result => {
         this.customerRepository.get(userId).then(customer => {
@@ -52,7 +50,13 @@ class OrderHandler {
 }
 
 var notificationServices: INotifyCustomerAboutOrder[] = [new SmsService()];
-var orderHandler = new OrderHandler(notificationServices);
+const logger = new Logger();
+const itemRepository = new ItemRepository();
+var orderHandler = new OrderHandler(
+  notificationServices,
+  logger,
+  itemRepository
+);
 var items = [];
 var userId = "userId";
 var creditCardInformation = {};
