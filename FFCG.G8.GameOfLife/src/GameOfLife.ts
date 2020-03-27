@@ -6,8 +6,8 @@ import { LiveCellWithMoreThanThreeNeighborsRule } from "./rules/LiveCellWithMore
 import { LiveCellWithTwoOrThreeNeighborsRule } from "./rules/LiveCellWithTwoOrThreeNeighborsRule";
 
 export class GameOfLife {
-  private rows: number;
-  private columns: number;
+  public rows: number;
+  public columns: number;
   public cells: Array<Array<Cell>> = [];
 
   constructor(rows: number, columns: number) {

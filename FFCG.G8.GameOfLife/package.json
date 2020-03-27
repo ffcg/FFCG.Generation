@@ -10,7 +10,15 @@
   "license": "ISC",
   "devDependencies": {
     "@types/jasmine": "^2.8.8",
+    "@types/node": "^10.12.2",
+    "html-loader": "^1.0.0",
     "jasmine": "^3.2.0",
-    "typescript": "^3.1.1"
+    "ts-loader": "^5.2.1",
+    "typescript": "^3.1.1",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "filemanager-webpack-plugin": "^2.0.5"
   }
 }
